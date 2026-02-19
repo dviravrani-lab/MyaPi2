@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const meetingController = require("../controllers/meetingController");
+const meetingController = require("../controllers/MeetingController");
 
 // מחזיר את כל הפגישות של היוזר (creator או participant)
 router.get("/:userId", meetingController.getMeetings);
