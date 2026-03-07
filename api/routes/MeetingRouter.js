@@ -2,8 +2,11 @@ const express = require("express");
 const router = express.Router();
 const meetingController = require("../controllers/MeetingController");
 
-// מחזיר את כל הפגישות של היוזר (creator או participant)
-router.get("/:userId", meetingController.getMeetings);
+// מחזיר את כל הפגישות שהיוזר הוא היוצר
+router.get("/creator/:userId", meetingController.getMeetingsByCreator);
+
+// מחזיר את כל הפגישות שהיוזר הוא משתתף
+router.get("/participant/:userId", meetingController.getMeetingsByParticipant);
 
 // יצירת פגישה חדשה בין שני יוזרים
 router.post("/", meetingController.createMeeting);

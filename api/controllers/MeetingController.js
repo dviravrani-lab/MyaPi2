@@ -2,26 +2,31 @@ const Meeting = require("../models/Meeting");
 
 module.exports = {
 
-    // GET /meeting/:userId
-    // מחזיר את כל הפגישות שבהן היוזר הוא היוצר או המשתתף
-    getMeetings: async (req, res) => {
-        try {
-            const userId = req.params.userId;
+// מביא את כל ה-meetings שהמשתמש הוא היוצר
+getMeetingsByCreator: async (req, res) => {
+    try {
+        const userId = req.params.userId;
 
-            const meetings = await Meeting.find({ 
-                $or: [
-                    { creatorUserId: userId },
-                    { participantUserId: userId }
-                ]
-            });
+        const meetings = await Meeting.find({ creatorUserId: userId });
 
-            res.status(200).json(meetings);
+        res.status(200).json(meetings);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+},
 
-        } catch (err) {
-            res.status(500).json({ message: err.message });
-        }
-    },
+// מביא את כל ה-meetings שהמשתמש הוא משתתף
+getMeetingsByParticipant: async (req, res) => {
+    try {
+        const userId = req.params.userId;
 
+        const meetings = await Meeting.find({ participantUserId: userId });
+
+        res.status(200).json(meetings);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+},
     // POST /meeting
     createMeeting: async (req, res) => {
         try {
