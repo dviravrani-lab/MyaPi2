@@ -8,7 +8,8 @@ const MeetingSchema = new mongoose.Schema({
     time: { type: String, required: true },
     location: { type: String },           
     creatorUserId: { type: String, required: true },      
-    participantUserId: { type: String, required: true }  
+    participantUserId: { type: String, required: true },
+    status: {type: String}
 }, { timestamps: true });
 
 module.exports = mongoose.model("Meeting", MeetingSchema);
