@@ -96,7 +96,6 @@ module.exports = {
 
             const meeting = await Meeting.findById(id);
             if (!meeting) {
-                console.log("meeting not found")
                 return res.status(404).json({ message: "Meeting not found" });
         
             }
@@ -109,5 +108,26 @@ module.exports = {
         } catch (err) {
             res.status(500).json({ message: err.message });
         }
+    },
+
+        rejectMeeting: async (req, res) => {
+        try {
+            const { id } = req.params;
+
+            const meeting = await Meeting.findById(id);
+            if (!meeting) {
+                return res.status(404).json({ message: "Meeting not found" });
+        
+            }
+
+            meeting.status = "rejected";
+            await meeting.save();
+
+            res.status(200).json(meeting);
+
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+        }
     }
+
 };

@@ -20,4 +20,6 @@ router.delete("/:userId/:id", meetingController.deleteMeeting);
 // אישור פגישה
 router.post("/accept/:id", meetingController.acceptMeeting);
 
+router.post("/reject/:id", meetingController.rejectMeeting);
+
 module.exports = router;
