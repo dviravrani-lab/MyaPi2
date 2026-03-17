@@ -120,7 +120,7 @@ module.exports = {
         
             }
 
-            meeting.status = "rejected";
+            meeting.status = "Rejected";
             await meeting.save();
 
             res.status(200).json(meeting);
