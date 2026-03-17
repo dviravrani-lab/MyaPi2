@@ -96,7 +96,9 @@ module.exports = {
 
             const meeting = await Meeting.findById(id);
             if (!meeting) {
+                console.log("meeting not found")
                 return res.status(404).json({ message: "Meeting not found" });
+        
             }
 
             meeting.status = "Accepted";
