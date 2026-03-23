@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 const app = require('./app');
 
 const PORT = process.env.PORT || 3000;
+const uri = process.env.MONGO_URI;
+console.log(uri)
 
-console.log("Mongo URI:", process.env.MONGO_URI); // debug
-
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
