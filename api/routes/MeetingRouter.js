@@ -21,5 +21,6 @@ router.delete("/:userId/:id", meetingController.deleteMeeting);
 router.post("/accept/:id", meetingController.acceptMeeting);
 
 router.post("/reject/:id", meetingController.rejectMeeting);
+router.get("/user/:uid", meetingController.getUserByUid);
 
 module.exports = router;
