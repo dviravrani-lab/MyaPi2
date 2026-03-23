@@ -43,6 +43,7 @@ router.get("/:uid", async (req, res) => {
             const user = await User.findOne({ firebaseUid: uid });
 
             if (!user) {
+                console.log("cannot find user with firebase uid as: " + uid);
                 return res.status(404).json({ message: "User not found" });
             }
 
