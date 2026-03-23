@@ -4,8 +4,7 @@ const mongoose = require('mongoose');
 const app = require('./app');
 
 const PORT = process.env.PORT || 3000;
-const uri = process.env.MONGO_URI;
-console.log(uri)
+const uri = process.env.MONGO_STR;
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
