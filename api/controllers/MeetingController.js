@@ -24,14 +24,14 @@ module.exports = {
         }
     },
 
-        getAcceptedMeetingsByCreator: async (req, res) => {
+    getAcceptedMeetingsByCreator: async (req, res) => {
         try {
             const userId = req.params.userId;
 
             const meetings = await Meeting.find({
                 status: "Accepted",
             
-                     creatorUserId: userId
+                    creatorUserId: userId
                 
             });
 
@@ -49,7 +49,7 @@ module.exports = {
             const meetings = await Meeting.find({
                 status: "Accepted",
             
-                     participantUserId: userId 
+                    participantUserId: userId 
                 
             });
 
