@@ -8,8 +8,10 @@ router.get("/creator/:userId", meetingController.getMeetingsByCreator);
 // מחזיר את כל הפגישות שהיוזר הוא משתתף (Pending)
 router.get("/participant/:userId", meetingController.getMeetingsByParticipant);
 
+router.get("/accepted/creator/:userId", meetingController.getAcceptedMeetingsByCreator);
+
 // מחזיר את כל הפגישות שהיוזר הוא משתתף ואושרו (Accepted)
-router.get("/accepted/:userId", meetingController.getAcceptedMeetingsByParticipant);
+router.get("/accepted/participant/:userId", meetingController.getAcceptedMeetingsByParticipant);
 
 // יצירת פגישה חדשה בין שני יוזרים
 router.post("/", meetingController.createMeeting);
