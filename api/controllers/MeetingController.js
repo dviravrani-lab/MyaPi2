@@ -25,15 +25,23 @@ module.exports = {
     },
 
     // מביא את כל ה-meetings שהמשתמש הוא משתתף ואושרו
-    getAcceptedMeetingsByParticipant: async (req, res) => {
-        try {
-            const userId = req.params.userId;
-            const meetings = await Meeting.find({ participantUserId: userId, status: "Accepted" });
-            res.status(200).json(meetings);
-        } catch (err) {
-            res.status(500).json({ message: err.message });
-        }
-    },
+  getAcceptedMeetingsByParticipant: async (req, res) => {
+    try {
+        const userId = req.params.userId;
+
+        const meetings = await Meeting.find({
+            status: "Accepted",
+            $or: [
+                { participantUserId: userId },
+                { creatorUserId: userId }
+            ]
+        });
+
+        res.status(200).json(meetings);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+},
 
     // יצירת פגישה
     createMeeting: async (req, res) => {
