@@ -6,7 +6,7 @@ module.exports = {
     getMeetingsByCreator: async (req, res) => {
         try {
             const userId = req.params.userId;
-            const meetings = await Meeting.find({ creatorUserId: userId });
+            const meetings = await Meeting.find({ creatorUserId: userId, status: "Pending"});
             res.status(200).json(meetings);
         } catch (err) {
             res.status(500).json({ message: err.message });
