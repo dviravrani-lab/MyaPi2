@@ -5,7 +5,7 @@ const User = require("../models/User");
 // POST /user
 router.post("/", async (req, res) => {
     try {
-        const { firebaseUid, email, name } = req.body;
+        const { firebaseUid, email, name, role } = req.body;
 
         // בדיקה אם היוזר כבר קיים
         let user = await User.findOne({ firebaseUid });
@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
         }
 
         // יצירת משתמש חדש
-        user = new User({ firebaseUid, email, name });
+        user = new User({ firebaseUid, email, name, role });
         await user.save();
 
         res.status(201).json(user);
