@@ -2,17 +2,21 @@ const Meeting = require("../models/Meeting");
 
 module.exports = {
 
-    // מביא את כל ה-meetings שהמשתמש הוא היוצר
+        // מביא את כל ה-meetings שהמשתמש הוא היוצר
     getMeetingsByCreator: async (req, res) => {
         try {
             const userId = req.params.userId;
-            const meetings = await Meeting.find({ creatorUserId: userId, status: "Pending"});
+            // מציאת כל המפגשים של היוזר שאינם עם סטטוס Accepted
+            const meetings = await Meeting.find({ 
+                creatorUserId: userId, 
+                status: { $ne: "Accepted" } 
+            });
             res.status(200).json(meetings);
         } catch (err) {
             res.status(500).json({ message: err.message });
         }
     },
-
+    
     // מביא את כל ה-meetings שהמשתמש הוא משתתף
     getMeetingsByParticipant: async (req, res) => {
         try {
